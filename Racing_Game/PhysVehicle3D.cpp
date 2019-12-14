@@ -1,5 +1,6 @@
 #include "PhysVehicle3D.h"
 #include "Primitive.h"
+#include "Color.h"
 #include "Bullet/include/btBulletDynamicsCommon.h"
 
 // ----------------------------------------------------------------------------
@@ -40,10 +41,11 @@ void PhysVehicle3D::Render()
 
 	//Car Parts
 	Cube chassis(info.chassis_size.x, info.chassis_size.y, info.chassis_size.z);
+	chassis.color = Red;
 	vehicle->getChassisWorldTransform().getOpenGLMatrix(&chassis.transform);
 
-	Cube floor(info.core.x, info.core.y, info.core.z);
-	vehicle->getChassisWorldTransform().getOpenGLMatrix(&floor.transform);
+	Cube core(info.core.x, info.core.y, info.core.z);
+	vehicle->getChassisWorldTransform().getOpenGLMatrix(&core.transform);
 
 	Cube wall1_car(info.wall1_car.x, info.wall1_car.y, info.wall1_car.z);
 	vehicle->getChassisWorldTransform().getOpenGLMatrix(&wall1_car.transform);
@@ -83,9 +85,9 @@ void PhysVehicle3D::Render()
 	chassis.transform.M[13] += offset.getY();
 	chassis.transform.M[14] += offset.getZ();
 
-	floor.transform.M[12] += floor_offset.getX();
-	floor.transform.M[13] += floor_offset.getY();
-	floor.transform.M[14] += floor_offset.getZ();
+	core.transform.M[12] += floor_offset.getX();
+	core.transform.M[13] += floor_offset.getY();
+	core.transform.M[14] += floor_offset.getZ();
 
 	wall1_car.transform.M[12] += wall1_car_offset.getX();
 	wall1_car.transform.M[13] += wall1_car_offset.getY();
@@ -105,7 +107,7 @@ void PhysVehicle3D::Render()
 
 	//Render
 	chassis.Render();
-	floor.Render();
+	core.Render();
 	wall1_car.Render();
 	wall2_car.Render();
 	wall3_car.Render();
