@@ -23,9 +23,12 @@ struct Wheel
 struct VehicleInfo
 {
 	//Golf
-	vec3 floor;
-	vec3 floor_offset;
-
+	vec3 core;
+	vec3 core_offset;
+	vec3 wall1_car_offset;
+	vec3 wall2_car_offset;
+	vec3 wall3_car_offset;
+	vec3 front_offset;
 
 	vec3 cube1;
 	vec3 cube1_offset;
@@ -50,6 +53,11 @@ struct VehicleInfo
 	
 	vec3 chassis_size;
 	vec3 chassis_offset;
+	vec3 wall1_car;
+	vec3 wall2_car;
+	vec3 wall3_car;
+	vec3 front;
+
 	float mass;
 	float suspensionStiffness; // default to 5.88 / 10.0 offroad / 50.0 sports car / 200.0 F1 car
 	float suspensionCompression; // default to 0.83

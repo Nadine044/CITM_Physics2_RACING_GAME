@@ -38,19 +38,46 @@ void PhysVehicle3D::Render()
 		wheel.Render();
 	}
 
+	//Car Parts
 	Cube chassis(info.chassis_size.x, info.chassis_size.y, info.chassis_size.z);
 	vehicle->getChassisWorldTransform().getOpenGLMatrix(&chassis.transform);
 
-	Cube floor(info.floor.x, info.floor.y, info.floor.z);
+	Cube floor(info.core.x, info.core.y, info.core.z);
 	vehicle->getChassisWorldTransform().getOpenGLMatrix(&floor.transform);
 
+	Cube wall1_car(info.wall1_car.x, info.wall1_car.y, info.wall1_car.z);
+	vehicle->getChassisWorldTransform().getOpenGLMatrix(&wall1_car.transform);
+
+	Cube wall2_car(info.wall2_car.x, info.wall2_car.y, info.wall2_car.z);
+	vehicle->getChassisWorldTransform().getOpenGLMatrix(&wall2_car.transform);
+
+	Cube wall3_car(info.wall3_car.x, info.wall3_car.y, info.wall3_car.z);
+	vehicle->getChassisWorldTransform().getOpenGLMatrix(&wall3_car.transform);
+
+	Cube front(info.front.x, info.front.y, info.front.z);
+	vehicle->getChassisWorldTransform().getOpenGLMatrix(&front.transform);
+
+	//Rotation Quaternion
 	btQuaternion q = vehicle->getChassisWorldTransform().getRotation();
 	
+	//Offset
 	btVector3 offset(info.chassis_offset.x, info.chassis_offset.y, info.chassis_offset.z);
 	offset = offset.rotate(q.getAxis(), q.getAngle());
 
-	btVector3 floor_offset(info.floor.x, info.floor.y, info.floor.z);
+	btVector3 floor_offset(info.core_offset.x, info.core_offset.y, info.core_offset.z);
 	floor_offset = floor_offset.rotate(q.getAxis(), q.getAngle());
+
+	btVector3 wall1_car_offset(info.wall1_car_offset.x, info.wall1_car_offset.y, info.wall1_car_offset.z);
+	wall1_car_offset = wall1_car_offset.rotate(q.getAxis(), q.getAngle());
+
+	btVector3 wall2_car_offset(info.wall2_car_offset.x, info.wall2_car_offset.y, info.wall2_car_offset.z);
+	wall2_car_offset = wall2_car_offset.rotate(q.getAxis(), q.getAngle());
+
+	btVector3 wall3_car_offset(info.wall3_car_offset.x, info.wall3_car_offset.y, info.wall3_car_offset.z);
+	wall3_car_offset = wall3_car_offset.rotate(q.getAxis(), q.getAngle());
+
+	btVector3 front_offset(info.front_offset.x, info.front_offset.y, info.front_offset.z);
+	front_offset = front_offset.rotate(q.getAxis(), q.getAngle());
 
 	chassis.transform.M[12] += offset.getX();
 	chassis.transform.M[13] += offset.getY();
@@ -60,8 +87,29 @@ void PhysVehicle3D::Render()
 	floor.transform.M[13] += floor_offset.getY();
 	floor.transform.M[14] += floor_offset.getZ();
 
+	wall1_car.transform.M[12] += wall1_car_offset.getX();
+	wall1_car.transform.M[13] += wall1_car_offset.getY();
+	wall1_car.transform.M[14] += wall1_car_offset.getZ();
+
+	wall2_car.transform.M[12] += wall2_car_offset.getX();
+	wall2_car.transform.M[13] += wall2_car_offset.getY();
+	wall2_car.transform.M[14] += wall2_car_offset.getZ();
+
+	wall3_car.transform.M[12] += wall3_car_offset.getX();
+	wall3_car.transform.M[13] += wall3_car_offset.getY();
+	wall3_car.transform.M[14] += wall3_car_offset.getZ();
+
+	front.transform.M[12] += front_offset.getX();
+	front.transform.M[13] += front_offset.getY();
+	front.transform.M[14] += front_offset.getZ();
+
+	//Render
 	chassis.Render();
 	floor.Render();
+	wall1_car.Render();
+	wall2_car.Render();
+	wall3_car.Render();
+	front.Render();
 }
 
 // ----------------------------------------------------------------------------
