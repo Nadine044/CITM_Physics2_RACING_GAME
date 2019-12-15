@@ -164,7 +164,7 @@ void ModuleCamera3D::FollowVehicle(float distance)
 	vec3 VehiclePos = App->player->vehicle->GetPos();
 
 	vec3 BackDirection = App->player->vehicle->GetBackDirection();
-	BackDirection.y = 0.4;
+	BackDirection.y = 0.3;
 	App->camera->Position = VehiclePos + (distance * BackDirection);
 
 	App->camera->LookAt(VehiclePos);

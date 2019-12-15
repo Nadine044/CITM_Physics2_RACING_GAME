@@ -18,6 +18,10 @@ public:
 
 	Cube wall;
 	PhysBody3D* physWall = nullptr;
+
+	Cube testRamp;
+
+	Cube CreateRamp(vec3, vec3, float, Color, float, vec3, bool);
 };
 
 /*#pragma once
