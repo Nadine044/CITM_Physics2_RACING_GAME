@@ -18,8 +18,8 @@ bool ModuleCircuit::Start()
 
 	LOG("Loading Circuit");
 
-	wall.SetPos(10, 1.5f, 2);
-	wall.size = {5, 3, 5};
+	wall.SetPos(0, 0.1f, 0);
+	wall.size = {100, 0.2f, 100};
 	wall.color = Red;
 	physWall = App->physics->AddBody(wall, WALL_MASS);
 
