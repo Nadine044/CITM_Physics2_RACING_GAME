@@ -18,12 +18,23 @@ bool ModuleCircuit::Start()
 
 	LOG("Loading Circuit");
 
+	//INITIAL TERRAIN
 	wall.SetPos(0, 0.1f, 0);
-	wall.size = {100, 0.2f, 100};
+	wall.size = {100, 0.2f, 50};
 	wall.color = Brown;
 	physWall = App->physics->AddBody(wall, WALL_MASS);
 
-	testRamp = CreateRamp(vec3(10, 1, 5), vec3(3, 1, 20), 0, Red, 45, vec3(1, 0, 0), true);
+	//FIRST RAMP
+	firstRamp = CreateRamp(vec3(0, 6.f, 35.5f), vec3(100, 0.2f, 25), 0, Red, -30, vec3(1, 0, 0), true);
+
+	//FIRST FLOOR
+	first_terrain.SetPos(0, 6, 53.5f);
+	first_terrain.size = {100, 12.f, 15};
+	first_terrain.color = Brown;
+	physFirstTerrain = App->physics->AddBody(first_terrain, WALL_MASS);
+
+	//SECOND RAMP
+	secondRamp = CreateRamp(vec3(0, 22, 77.5f), vec3(100, 0.2f, 40), 0, Red, -30, vec3(1, 0, 0), true);
 
 	return true;
 }
@@ -31,7 +42,9 @@ bool ModuleCircuit::Start()
 update_status ModuleCircuit::Update(float dt)
 {
 	wall.Render();
-	testRamp.Render();
+	firstRamp.Render();
+	first_terrain.Render();
+	secondRamp.Render();
 
 	return UPDATE_CONTINUE;
 }

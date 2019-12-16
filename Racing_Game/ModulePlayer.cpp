@@ -41,7 +41,7 @@ bool ModulePlayer::Start()
 	car.suspensionDamping = 0.88f;
 	car.maxSuspensionTravelCm = 1000.0f;
 	car.frictionSlip = 50.5;
-	car.maxSuspensionForce = 6000.0f;
+	car.maxSuspensionForce = 6000.0f; //10000?? MYTODO
 
 	// Wheel properties ---------------------------------------
 	float connection_height = 1.2f;
@@ -149,7 +149,7 @@ update_status ModulePlayer::Update(float dt)
 		brake = BRAKE_POWER;
 	}
 
-	//App->camera->FollowVehicle(20);
+	App->camera->FollowVehicle(20);
 
 	vehicle->ApplyEngineForce(acceleration);
 	vehicle->Turn(turn);

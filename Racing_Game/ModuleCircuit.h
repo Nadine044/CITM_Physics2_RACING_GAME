@@ -19,8 +19,13 @@ public:
 	Cube wall;
 	PhysBody3D* physWall = nullptr;
 
-	Cube testRamp;
+	Cube firstRamp;
+	Cube secondRamp;
 
+	Cube first_terrain;
+	PhysBody3D* physFirstTerrain = nullptr;
+
+public:
 	Cube CreateRamp(vec3, vec3, float, Color, float, vec3, bool);
 };
 
