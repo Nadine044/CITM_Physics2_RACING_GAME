@@ -149,7 +149,7 @@ update_status ModulePlayer::Update(float dt)
 		brake = BRAKE_POWER;
 	}
 
-	App->camera->FollowVehicle(20);
+	App->camera->FollowVehicle(30);
 
 	vehicle->ApplyEngineForce(acceleration);
 	vehicle->Turn(turn);

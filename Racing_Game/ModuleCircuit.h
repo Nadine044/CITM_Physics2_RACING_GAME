@@ -16,40 +16,32 @@ public:
 	update_status Update(float dt);
 	bool CleanUp();
 
-	Cube wall;
+	Cube initialTerrain;
 	PhysBody3D* physWall = nullptr;
 
 	Cube firstRamp;
 	Cube secondRamp;
+	Cube thirdRamp;
 
 	Cube first_terrain;
 	PhysBody3D* physFirstTerrain = nullptr;
 
+	Cube secondTerrain;
+	PhysBody3D* physSecondTerrain = nullptr;
+
+	Cube thirdTerrain;
+	PhysBody3D* physThirdTerrain = nullptr;
+
+	Cube fourthTerrain;
+	PhysBody3D* physFourthTerrain = nullptr;
+
+	Cube fifthTerrain;
+	PhysBody3D* physFifthTerrain = nullptr;
+
+	Cube sixthTerrain;
+	PhysBody3D* physSixthTerrain = nullptr;
+
 public:
 	Cube CreateRamp(vec3, vec3, float, Color, float, vec3, bool);
-};
-
-/*#pragma once
-#include "Module.h"
-#include "Globals.h"
-#include "p2Point.h"
-#include "Primitive.h"
-
-//EN START() CREATE BODY, HACER FUNCIÓN PARA RECOPILAR TODAS LAS WALL
-
-#define WALL_MASS 100000
-
-class ModuleTrack : public Module {
-public:
-	ModuleTrack(Application* app, bool start_enable = true);
-	virtual ~ModuleTrack();
-
-	bool Start();
-	update_status Update(float dt);
-	bool CleanUp();
-
-	void DrawWalls() const;
-
-	p2List<Cube> wallList;
 	
-};*/
+};

@@ -19,32 +19,71 @@ bool ModuleCircuit::Start()
 	LOG("Loading Circuit");
 
 	//INITIAL TERRAIN
-	wall.SetPos(0, 0.1f, 0);
-	wall.size = {100, 0.2f, 50};
-	wall.color = Brown;
-	physWall = App->physics->AddBody(wall, WALL_MASS);
+	initialTerrain.SetPos(0, 0.1f, 0);
+	initialTerrain.size = { 40, 0.2f, 50};
+	initialTerrain.color = Brown;
+	physWall = App->physics->AddBody(initialTerrain, WALL_MASS);
 
 	//FIRST RAMP
-	firstRamp = CreateRamp(vec3(0, 6.f, 35.5f), vec3(100, 0.2f, 25), 0, Red, -30, vec3(1, 0, 0), true);
+	firstRamp = CreateRamp(vec3(0, 6.f, 35.5f), vec3(40, 0.2f, 25), 0, Red, -30, vec3(1, 0, 0), true);
 
 	//FIRST FLOOR
 	first_terrain.SetPos(0, 6, 53.5f);
-	first_terrain.size = {100, 12.f, 15};
+	first_terrain.size = { 40, 12.f, 15};
 	first_terrain.color = Brown;
 	physFirstTerrain = App->physics->AddBody(first_terrain, WALL_MASS);
 
 	//SECOND RAMP
-	secondRamp = CreateRamp(vec3(0, 22, 77.5f), vec3(100, 0.2f, 40), 0, Red, -30, vec3(1, 0, 0), true);
+	secondRamp = CreateRamp(vec3(0, 22, 77.5f), vec3(40, 0.2f, 40), 0, Red, -30, vec3(1, 0, 0), true);
+
+	//SECOND FLOOR
+	secondTerrain.SetPos(0, 16, 109.8f);
+	secondTerrain.size = { 40, 32, 30 };
+	secondTerrain.color = Brown;
+	physSecondTerrain = App->physics->AddBody(secondTerrain, WALL_MASS);
+
+	//THIRD RAMP (DESCENDING ONE)
+	thirdRamp = CreateRamp(vec3(0, 16, 140.8f), vec3(40, 0.2f, 45.25f), 0, White, 45, vec3(1, 0, 0), true);
+
+	//THIRD TERRAIN
+	thirdTerrain.SetPos(-80, 0.1f, 171.8f);
+	thirdTerrain.size = {200, 0.2f, 30};
+	thirdTerrain.color = Red;
+	physThirdTerrain = App->physics->AddBody(thirdTerrain, WALL_MASS);
+
+	//FOURTH TERRAIN
+	fourthTerrain.SetPos(-165, 0.1f, 106.15f);
+	fourthTerrain.size = { 30, 0.2f, 101.3f };
+	fourthTerrain.color = Green;
+	physFourthTerrain = App->physics->AddBody(fourthTerrain, WALL_MASS);
+
+	//FIFTH TERRAIN
+	fifthTerrain.SetPos(-50, 0.1f, 77.65f);
+	fifthTerrain.size = { 200, 0.2f, 33.8f };
+	fifthTerrain.color = Blue;
+	physFifthTerrain = App->physics->AddBody(fifthTerrain, WALL_MASS);
+
+	//SIXTH TERRAIN
+	sixthTerrain.SetPos(35, 0.1f, 41.875f);
+	sixthTerrain.size = { 30, 0.2f, 37.75f };
+	sixthTerrain.color = White;
+	physSixthTerrain = App->physics->AddBody(sixthTerrain, WALL_MASS);
 
 	return true;
 }
 
 update_status ModuleCircuit::Update(float dt)
 {
-	wall.Render();
+	initialTerrain.Render();
 	firstRamp.Render();
 	first_terrain.Render();
 	secondRamp.Render();
+	secondTerrain.Render();
+	thirdRamp.Render();
+	thirdTerrain.Render();
+	fourthTerrain.Render();
+	fifthTerrain.Render();
+	sixthTerrain.Render();
 
 	return UPDATE_CONTINUE;
 }
@@ -74,3 +113,5 @@ Cube ModuleCircuit::CreateRamp(vec3 position, vec3 size, float mass, Color color
 
 	return cube;
 }
+
+
