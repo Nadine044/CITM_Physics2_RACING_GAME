@@ -69,6 +69,24 @@ bool ModuleCircuit::Start()
 	sixthTerrain.color = White;
 	physSixthTerrain = App->physics->AddBody(sixthTerrain, WALL_MASS);
 
+	//SEVENTH TERRAIN
+	seventhTerrain.SetPos(-10, 0.1f, 36);
+	seventhTerrain.size = { 60, 0.2f, 20.5f };
+	seventhTerrain.color = Green;
+	physSeventhTerrain = App->physics->AddBody(seventhTerrain, WALL_MASS);
+
+	//FOURTH RAMP
+	fourthRamp = CreateRamp(vec3(-47, 3.169f, 36), vec3(15, 0.2f, 20.5f), 0, Red, -25, vec3(0, 0, 1 ), true);
+
+	//FIRST ELEVATED 0º RAMP
+	fifthRamp = CreateRamp(vec3(-100, 16, 36), vec3(50, 0.2f, 20.5f), 0, Blue, 0, vec3(0, 0, 0), true);
+
+	//SECOND ELEVATED 0º RAMP
+	sixthRamp = CreateRamp(vec3(-110, 16, 56.25f), vec3(30, 0.2f, 20), 0, White, 0, vec3(0, 0, 0), true);
+
+	//SEVENTH RAMP
+	//seventhRamp = CreateRamp(vec3(0, 0, 0), vec3(0, 0, 0), 0, Green, 15, vec3(0, 0, 0), true);
+
 	return true;
 }
 
@@ -84,6 +102,11 @@ update_status ModuleCircuit::Update(float dt)
 	fourthTerrain.Render();
 	fifthTerrain.Render();
 	sixthTerrain.Render();
+	seventhTerrain.Render();
+	fourthRamp.Render();
+	fifthRamp.Render();
+	sixthRamp.Render();
+	//seventhRamp.Render();
 
 	return UPDATE_CONTINUE;
 }

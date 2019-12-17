@@ -22,6 +22,10 @@ public:
 	Cube firstRamp;
 	Cube secondRamp;
 	Cube thirdRamp;
+	Cube fourthRamp;
+	Cube fifthRamp;
+	Cube sixthRamp;
+	Cube seventhRamp;
 
 	Cube first_terrain;
 	PhysBody3D* physFirstTerrain = nullptr;
@@ -40,6 +44,9 @@ public:
 
 	Cube sixthTerrain;
 	PhysBody3D* physSixthTerrain = nullptr;
+
+	Cube seventhTerrain;
+	PhysBody3D* physSeventhTerrain = nullptr;
 
 public:
 	Cube CreateRamp(vec3, vec3, float, Color, float, vec3, bool);
