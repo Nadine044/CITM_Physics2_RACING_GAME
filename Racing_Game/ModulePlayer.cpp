@@ -110,6 +110,105 @@ bool ModulePlayer::Start()
 
 	vehicle = App->physics->AddVehicle(car);
 	vehicle->SetPos(0, 5, 0);
+
+	//---------------------------------------
+
+	//TRAILER
+
+	VehicleInfo trailerInfo;
+
+	//Personalized properties
+	trailerInfo.wall1_car.Set(0.15f, 1.5f, 10);
+	trailerInfo.wall1_car_offset.Set(1.425f, 2, 0);
+	trailerInfo.wall2_car.Set(0.15f, 1.5f, 10);
+	trailerInfo.wall2_car_offset.Set(-1.425f, 2, 0);
+	trailerInfo.wall3_car.Set(2.85f, 1.5f, 0.15f);
+	trailerInfo.wall3_car_offset.Set(0, 2, -4.925f);
+	trailerInfo.wall4_car.Set(2.85f, 1.5f, 0.15f);
+	trailerInfo.wall4_car_offset.Set(0, 2, 4.925f);
+
+	// Car properties ----------------------------------------
+	trailerInfo.chassis_size.Set(3, 0.3f, 10);
+	trailerInfo.chassis_offset.Set(0, 1.1f, 0);
+	trailerInfo.mass = 500.0f;
+	trailerInfo.suspensionStiffness = 15.88f;
+	trailerInfo.suspensionCompression = 0.83f;
+	trailerInfo.suspensionDamping = 0.88f;
+	trailerInfo.maxSuspensionTravelCm = 1000.0f;
+	trailerInfo.frictionSlip = 50.5;
+	trailerInfo.maxSuspensionForce = 6000.0f; //10000?? MYTODO
+
+	// Wheel properties ---------------------------------------
+	float connection_height2 = 1.2f;
+	float wheel_radius2 = 1.f;
+	float wheel_width2 = 0.3f;
+	float suspensionRestLength2 = 1.2f;
+
+	// Don't change anything below this line ------------------
+
+	float half_width2 = trailerInfo.chassis_size.x*0.5f;
+	float half_length2 = trailerInfo.chassis_size.z*0.5f;
+
+	vec3 direction2(0, -1, 0);
+	vec3 axis2(-1, 0, 0);
+
+	trailerInfo.num_wheels = 4;
+	trailerInfo.wheels = new Wheel[4];
+
+	// FRONT-LEFT ------------------------
+	trailerInfo.wheels[0].connection.Set(half_width2 - 0.3f * wheel_width2, connection_height2, half_length2 - wheel_radius2);
+	trailerInfo.wheels[0].direction = direction2;
+	trailerInfo.wheels[0].axis = axis2;
+	trailerInfo.wheels[0].suspensionRestLength = suspensionRestLength2;
+	trailerInfo.wheels[0].radius = wheel_radius2;
+	trailerInfo.wheels[0].width = wheel_width2;
+	trailerInfo.wheels[0].front = true;
+	trailerInfo.wheels[0].drive = true;
+	trailerInfo.wheels[0].brake = false;
+	trailerInfo.wheels[0].steering = true;
+
+	// FRONT-RIGHT ------------------------
+	trailerInfo.wheels[1].connection.Set(-half_width2 + 0.3f * wheel_width2, connection_height2, half_length2 - wheel_radius2);
+	trailerInfo.wheels[1].direction = direction2;
+	trailerInfo.wheels[1].axis = axis2;
+	trailerInfo.wheels[1].suspensionRestLength = suspensionRestLength2;
+	trailerInfo.wheels[1].radius = wheel_radius2;
+	trailerInfo.wheels[1].width = wheel_width2;
+	trailerInfo.wheels[1].front = true;
+	trailerInfo.wheels[1].drive = true;
+	trailerInfo.wheels[1].brake = false;
+	trailerInfo.wheels[1].steering = true;
+
+	// REAR-LEFT ------------------------
+	trailerInfo.wheels[2].connection.Set(half_width2 - 0.3f * wheel_width2, connection_height2, -half_length2 + wheel_radius2);
+	trailerInfo.wheels[2].direction = direction2;
+	trailerInfo.wheels[2].axis = axis2;
+	trailerInfo.wheels[2].suspensionRestLength = suspensionRestLength2;
+	trailerInfo.wheels[2].radius = wheel_radius2;
+	trailerInfo.wheels[2].width = wheel_width2;
+	trailerInfo.wheels[2].front = false;
+	trailerInfo.wheels[2].drive = false;
+	trailerInfo.wheels[2].brake = true;
+	trailerInfo.wheels[2].steering = false;
+
+	// REAR-RIGHT ------------------------
+	trailerInfo.wheels[3].connection.Set(-half_width2 + 0.3f * wheel_width2, connection_height2, -half_length2 + wheel_radius2);
+	trailerInfo.wheels[3].direction = direction2;
+	trailerInfo.wheels[3].axis = axis2;
+	trailerInfo.wheels[3].suspensionRestLength = suspensionRestLength2;
+	trailerInfo.wheels[3].radius = wheel_radius2;
+	trailerInfo.wheels[3].width = wheel_width2;
+	trailerInfo.wheels[3].front = false;
+	trailerInfo.wheels[3].drive = false;
+	trailerInfo.wheels[3].brake = true;
+	trailerInfo.wheels[3].steering = false;
+
+	trailer = App->physics->AddVehicle(trailerInfo);
+	trailer->SetPos(0, 5, 0);
+
+	//ATTACHING VEHICLE WITH TRAILER
+
+	App->physics->AddConstraintP2P(*vehicle, *trailer, vec3{ 0, 0.25f, -6 }, vec3{ 0, -0.25f, 6 });
 	
 	return true;
 }
@@ -156,6 +255,7 @@ update_status ModulePlayer::Update(float dt)
 	vehicle->Brake(brake);
 
 	vehicle->Render();
+	trailer->Render();
 
 	char title[80];
 	sprintf_s(title, "%.1f Km/h", vehicle->GetKmh());

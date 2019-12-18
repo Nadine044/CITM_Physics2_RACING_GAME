@@ -56,6 +56,9 @@ void PhysVehicle3D::Render()
 	Cube wall3_car(info.wall3_car.x, info.wall3_car.y, info.wall3_car.z);
 	vehicle->getChassisWorldTransform().getOpenGLMatrix(&wall3_car.transform);
 
+	Cube wall4_car(info.wall4_car.x, info.wall4_car.y, info.wall4_car.z);
+	vehicle->getChassisWorldTransform().getOpenGLMatrix(&wall4_car.transform);
+
 	Cube front(info.front.x, info.front.y, info.front.z);
 	vehicle->getChassisWorldTransform().getOpenGLMatrix(&front.transform);
 
@@ -77,6 +80,9 @@ void PhysVehicle3D::Render()
 
 	btVector3 wall3_car_offset(info.wall3_car_offset.x, info.wall3_car_offset.y, info.wall3_car_offset.z);
 	wall3_car_offset = wall3_car_offset.rotate(q.getAxis(), q.getAngle());
+
+	btVector3 wall4_car_offset(info.wall4_car_offset.x, info.wall4_car_offset.y, info.wall4_car_offset.z);
+	wall4_car_offset = wall4_car_offset.rotate(q.getAxis(), q.getAngle());
 
 	btVector3 front_offset(info.front_offset.x, info.front_offset.y, info.front_offset.z);
 	front_offset = front_offset.rotate(q.getAxis(), q.getAngle());
@@ -101,6 +107,10 @@ void PhysVehicle3D::Render()
 	wall3_car.transform.M[13] += wall3_car_offset.getY();
 	wall3_car.transform.M[14] += wall3_car_offset.getZ();
 
+	wall4_car.transform.M[12] += wall4_car_offset.getX();
+	wall4_car.transform.M[13] += wall4_car_offset.getY();
+	wall4_car.transform.M[14] += wall4_car_offset.getZ();
+
 	front.transform.M[12] += front_offset.getX();
 	front.transform.M[13] += front_offset.getY();
 	front.transform.M[14] += front_offset.getZ();
@@ -111,6 +121,7 @@ void PhysVehicle3D::Render()
 	wall1_car.Render();
 	wall2_car.Render();
 	wall3_car.Render();
+	wall4_car.Render();
 	front.Render();
 }
 

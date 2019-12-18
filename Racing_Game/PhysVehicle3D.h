@@ -28,26 +28,8 @@ struct VehicleInfo
 	vec3 wall1_car_offset;
 	vec3 wall2_car_offset;
 	vec3 wall3_car_offset;
+	vec3 wall4_car_offset;
 	vec3 front_offset;
-
-	vec3 cube1;
-	vec3 cube1_offset;
-	vec3 cube2;
-	vec3 cube2_offset;
-	vec3 cube3;
-	vec3 cube3_offset;
-	vec3 cube4;
-	vec3 cube4_offset;
-	vec3 cube5;
-	vec3 cube5_offset;
-	vec3 window;
-	vec3 window_offset;
-	vec3 cilindre1;
-	vec3 cilindre1_offset;
-	vec3 cylindre2;
-	vec3 cylindre2_offset;
-	vec3 cylindre3;
-	vec3 cylindre3_offset;
 
 	~VehicleInfo();
 	
@@ -56,6 +38,7 @@ struct VehicleInfo
 	vec3 wall1_car;
 	vec3 wall2_car;
 	vec3 wall3_car;
+	vec3 wall4_car;
 	vec3 front;
 
 	float mass;
@@ -88,4 +71,5 @@ public:
 
 	VehicleInfo info;
 	btRaycastVehicle* vehicle;
+	//btRaycastVehicle* trailer;
 };

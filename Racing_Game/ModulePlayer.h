@@ -22,6 +22,7 @@ public:
 public:
 
 	PhysVehicle3D* vehicle;
+	PhysVehicle3D* trailer;
 	float turn;
 	float acceleration;
 	float brake;
