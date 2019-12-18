@@ -82,10 +82,16 @@ bool ModuleCircuit::Start()
 	fifthRamp = CreateRamp(vec3(-100, 16, 36), vec3(50, 0.2f, 20.5f), 0, Blue, 0, vec3(0, 0, 0), true);
 
 	//SECOND ELEVATED 0º RAMP
-	sixthRamp = CreateRamp(vec3(-110, 16, 56.25f), vec3(30, 0.2f, 20), 0, White, 0, vec3(0, 0, 0), true);
+	sixthRamp = CreateRamp(vec3(-140, 16, 16), vec3(30, 0.2f, 60), 0, White, 0, vec3(0, 0, 0), true);
 
 	//SEVENTH RAMP
-	//seventhRamp = CreateRamp(vec3(0, 0, 0), vec3(0, 0, 0), 0, Green, 15, vec3(0, 0, 0), true);
+	seventhRamp = CreateRamp(vec3(-75.65f, 8, 0), vec3(100, 0.2f, 30), 0, Green, -9.20f, vec3(0, 0, 1), true);
+
+	//EIGHT TERRAIN
+	eightTerrain.SetPos(-22.825f, 0.1f, 0);
+	eightTerrain.size = { 6.80f, 0.2f, 30 };
+	eightTerrain.color = Blue;
+	physEightTerrain = App->physics->AddBody(eightTerrain, WALL_MASS);
 
 	return true;
 }
@@ -106,7 +112,8 @@ update_status ModuleCircuit::Update(float dt)
 	fourthRamp.Render();
 	fifthRamp.Render();
 	sixthRamp.Render();
-	//seventhRamp.Render();
+	seventhRamp.Render();
+	eightTerrain.Render();
 
 	return UPDATE_CONTINUE;
 }

@@ -48,6 +48,9 @@ public:
 	Cube seventhTerrain;
 	PhysBody3D* physSeventhTerrain = nullptr;
 
+	Cube eightTerrain;
+	PhysBody3D* physEightTerrain = nullptr;
+
 public:
 	Cube CreateRamp(vec3, vec3, float, Color, float, vec3, bool);
 	
