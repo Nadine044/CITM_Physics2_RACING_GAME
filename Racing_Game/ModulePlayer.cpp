@@ -272,7 +272,7 @@ update_status ModulePlayer::Update(float dt)
 	}
 	if (numLap == 1) {
 		LOG("RACE FINISH!!");
-		App->camera->Look(vec3(-20, 170, -20), vec3(-90, -90, 80), false);
+		App->camera->Look(vec3(-20, 50, -20), vec3(-90, -90, 80), false);
 	}
 
 	vehicle->ApplyEngineForce(acceleration);
