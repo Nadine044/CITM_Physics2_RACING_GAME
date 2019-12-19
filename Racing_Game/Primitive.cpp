@@ -30,7 +30,7 @@ void Primitive::Render() const
 
 		glBegin(GL_LINES);
 
-		glColor4f(1.0f, 0.0f, 0.0f, 1.0f);
+		glColor4f(1.0f, 1.0f, 0.0f, 1.0f);
 
 		glVertex3f(0.0f, 0.0f, 0.0f); glVertex3f(1.0f, 0.0f, 0.0f);
 		glVertex3f(1.0f, 0.1f, 0.0f); glVertex3f(1.1f, -0.1f, 0.0f);

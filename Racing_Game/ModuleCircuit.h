@@ -75,6 +75,9 @@ public:
 	Cube limitWall18;
 	Cube limitWall19;
 	Cube limitWall20;
+	Cube limitWall21;
+	Cube limitWall22;
+	Cube limitWall23;
 
 public:
 	Cube CreateRampOrWall(vec3, vec3, float, Color, float, vec3, bool);

@@ -246,6 +246,8 @@ update_status ModulePlayer::Update(float dt)
 	{
 		brake = BRAKE_POWER;
 	}		
+	if (App->input->GetKey(SDL_SCANCODE_Z) == KEY_REPEAT && numLap != 1)
+		acceleration = -MAX_ACCELERATION;
 
 	vehicle->GetPos();
 	if (vehicle->GetPos().z > 109.8f && vehicle->GetPos().x > -20)
@@ -255,7 +257,7 @@ update_status ModulePlayer::Update(float dt)
 	else
 		App->camera->FollowVehicle(30);	
 
-	//FINISH SENSOR
+	//FINISH SENSOR (WINNING)
 	if (vehicle->GetPos().z < 16 && vehicle->GetPos().x < -15 && vehicle->GetPos().x > -25)
 	{
 		sensor = true;
@@ -270,9 +272,8 @@ update_status ModulePlayer::Update(float dt)
 	}
 	if (numLap == 1) {
 		LOG("RACE FINISH!!");
-		App->camera->Look(vec3(-20, 50, -20), vec3(-90, -90, 80), false);
+		App->camera->Look(vec3(-20, 170, -20), vec3(-90, -90, 80), false);
 	}
-
 
 	vehicle->ApplyEngineForce(acceleration);
 	vehicle->Turn(turn);

@@ -61,7 +61,7 @@ bool ModuleCircuit::Start()
 	physThirdTerrain = App->physics->AddBody(thirdTerrain, WALL_MASS);
 
 	limitWall7 = CreateRampOrWall(vec3(-80, 2.4f, 186.8f), vec3(200, 5, 0.2f), 0, Gray, 0, vec3(0, 0, 0), true);
-	limitWall8 = CreateRampOrWall(vec3(0, 2.4f, 171.8f), vec3(0.2f, 5, 30), 0, Gray, 0, vec3(0, 0, 0), true);
+	limitWall8 = CreateRampOrWall(vec3(20, 2.4f, 171.8f), vec3(0.2f, 5, 30), 0, Gray, 0, vec3(0, 0, 0), true);
 	limitWall9 = CreateRampOrWall(vec3(-85, 2.4f, 156.8f), vec3(130, 5, 0.2f), 0, Gray, 0, vec3(0, 0, 0), true);
 
 	//FOURTH TERRAIN
@@ -71,7 +71,7 @@ bool ModuleCircuit::Start()
 	physFourthTerrain = App->physics->AddBody(fourthTerrain, WALL_MASS);
 
 	limitWall10 = CreateRampOrWall(vec3(-180, 2.4f, 121.15f), vec3(0.2f, 5, 131.3f), 0, Gray, 0, vec3(0, 0, 0), true);
-	//limitWall10 = CreateRampOrWall(vec3(-150, 2.4f, 121.15f), vec3(0.2f, 5, 0), 0, Gray, 0, vec3(0, 0, 0), true);
+	limitWall11 = CreateRampOrWall(vec3(-150, 2.4f, 125.675f), vec3(0.2f, 5, 62.25f), 0, Gray, 0, vec3(0, 0, 0), true);
 
 	//FIFTH TERRAIN
 	fifthTerrain.SetPos(-50, 0.1f, 77.65f);
@@ -79,11 +79,17 @@ bool ModuleCircuit::Start()
 	fifthTerrain.color = Blue;
 	physFifthTerrain = App->physics->AddBody(fifthTerrain, WALL_MASS);
 
+	limitWall12 = CreateRampOrWall(vec3(-50, 2.4f, 94.25f), vec3(200, 5, 0.2f), 0, Gray, 0, vec3(0, 0, 0), true);
+	limitWall13 = CreateRampOrWall(vec3(-82.5f, 2.4f, 60.65f), vec3(200, 5, 0.2f), 0, Gray, 0, vec3(0, 0, 0), true);
+
 	//SIXTH TERRAIN
 	sixthTerrain.SetPos(35, 0.1f, 41.875f);
 	sixthTerrain.size = { 30, 0.2f, 37.75f };
 	sixthTerrain.color = White;
 	physSixthTerrain = App->physics->AddBody(sixthTerrain, WALL_MASS);
+
+	limitWall14 = CreateRampOrWall(vec3(50.5, 2.4f, 59.25f), vec3(0.2f, 5, 71.3f), 0, Gray, 0, vec3(0, 0, 0), true);
+	limitWall15 = CreateRampOrWall(vec3(35, 2.4f, 23), vec3(30, 5, 0.2f), 0, Gray, 0, vec3(0, 0, 0), true);
 
 	//SEVENTH TERRAIN
 	seventhTerrain.SetPos(-10, 0.1f, 36);
@@ -91,14 +97,23 @@ bool ModuleCircuit::Start()
 	seventhTerrain.color = Green;
 	physSeventhTerrain = App->physics->AddBody(seventhTerrain, WALL_MASS);
 
+	limitWall16 = CreateRampOrWall(vec3(-30, 2.4f, 25.75f), vec3(20, 5, 0.2f), 0, Gray, 0, vec3(0, 0, 0), true);
+	limitWall17 = CreateRampOrWall(vec3(-30, 2.4f, 46.25f), vec3(20, 5, 0.2f), 0, Gray, 0, vec3(0, 0, 0), true);
+
 	//FOURTH RAMP
 	fourthRamp = CreateRampOrWall(vec3(-47, 3.169f, 36), vec3(15, 0.2f, 20.5f), 0, Red, -25, vec3(0, 0, 1 ), true);
 
 	//FIRST ELEVATED 0º RAMP
 	fifthRamp = CreateRampOrWall(vec3(-100, 16, 36), vec3(50, 0.2f, 20.5f), 0, Blue, 0, vec3(0, 0, 0), true);
 
+	limitWall18 = CreateRampOrWall(vec3(-100, 18.4f, 25.75f), vec3(50, 5, 0.2f), 0, Gray, 0, vec3(0, 0, 0), true);
+	limitWall19 = CreateRampOrWall(vec3(-115, 18.4f, 46.25f), vec3(80, 5, 0.2f), 0, Gray, 0, vec3(0, 0, 0), true);
+
 	//SECOND ELEVATED 0º RAMP
 	sixthRamp = CreateRampOrWall(vec3(-140, 16, 16), vec3(30, 0.2f, 60), 0, White, 0, vec3(0, 0, 0), true);
+
+	limitWall20 = CreateRampOrWall(vec3(-155, 16.4f, 16.125f), vec3(0.2f, 5, 60), 0, Gray, 0, vec3(0, 0, 0), true);
+	limitWall21 = CreateRampOrWall(vec3(-125, 16.4f, 21.125), vec3(0.2f, 5, 9.5f), 0, Gray, 0, vec3(0, 0, 0), true);
 
 	//SEVENTH RAMP
 	seventhRamp = CreateRampOrWall(vec3(-75.65f, 8, 0), vec3(100, 0.2f, 30), 0, Green, -9.20f, vec3(0, 0, 1), true);
@@ -144,6 +159,19 @@ update_status ModuleCircuit::Update(float dt)
 	limitWall8.Render();
 	limitWall9.Render();
 	limitWall10.Render();
+	limitWall11.Render();
+	limitWall12.Render();
+	limitWall13.Render();
+	limitWall14.Render();
+	limitWall15.Render();
+	limitWall16.Render();
+	limitWall17.Render();
+	limitWall18.Render();
+	limitWall19.Render();
+	limitWall20.Render();
+	limitWall21.Render();
+	//limitWall22.Render();
+	//limitWall23.Render();
 
 	return UPDATE_CONTINUE;
 }
