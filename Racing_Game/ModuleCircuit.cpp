@@ -24,8 +24,13 @@ bool ModuleCircuit::Start()
 	initialTerrain.color = Brown;
 	physWall = App->physics->AddBody(initialTerrain, WALL_MASS);
 
+	//limit walls
+	limitWall1 = CreateRampOrWall(vec3(20, 2.4f, 0), vec3(0.2f, 5, 50), WALL_MASS * 2, Gray, 0, vec3(0, 0, 0), true);
+	limitWall2 = CreateRampOrWall(vec3(0, 2.4f, -25), vec3(40, 5, 0.2f), WALL_MASS * 2, Gray, 0, vec3(0, 0, 0), true);
+
+
 	//FIRST RAMP
-	firstRamp = CreateRamp(vec3(0, 6.f, 35.5f), vec3(40, 0.2f, 25), 0, Red, -30, vec3(1, 0, 0), true);
+	firstRamp = CreateRampOrWall(vec3(0, 6.f, 35.5f), vec3(40, 0.2f, 25), 0, Red, -30, vec3(1, 0, 0), true);
 
 	//FIRST FLOOR
 	first_terrain.SetPos(0, 6, 53.5f);
@@ -34,7 +39,7 @@ bool ModuleCircuit::Start()
 	physFirstTerrain = App->physics->AddBody(first_terrain, WALL_MASS);
 
 	//SECOND RAMP
-	secondRamp = CreateRamp(vec3(0, 22, 77.5f), vec3(40, 0.2f, 40), 0, Red, -30, vec3(1, 0, 0), true);
+	secondRamp = CreateRampOrWall(vec3(0, 22, 77.5f), vec3(40, 0.2f, 40), 0, Red, -30, vec3(1, 0, 0), true);
 
 	//SECOND FLOOR
 	secondTerrain.SetPos(0, 16, 109.8f);
@@ -43,7 +48,7 @@ bool ModuleCircuit::Start()
 	physSecondTerrain = App->physics->AddBody(secondTerrain, WALL_MASS);
 
 	//THIRD RAMP (DESCENDING ONE)
-	thirdRamp = CreateRamp(vec3(0, 16, 140.8f), vec3(40, 0.2f, 45.25f), 0, White, 45, vec3(1, 0, 0), true);
+	thirdRamp = CreateRampOrWall(vec3(0, 16, 140.8f), vec3(40, 0.2f, 45.25f), 0, White, 45, vec3(1, 0, 0), true);
 
 	//THIRD TERRAIN
 	thirdTerrain.SetPos(-80, 0.1f, 171.8f);
@@ -76,16 +81,16 @@ bool ModuleCircuit::Start()
 	physSeventhTerrain = App->physics->AddBody(seventhTerrain, WALL_MASS);
 
 	//FOURTH RAMP
-	fourthRamp = CreateRamp(vec3(-47, 3.169f, 36), vec3(15, 0.2f, 20.5f), 0, Red, -25, vec3(0, 0, 1 ), true);
+	fourthRamp = CreateRampOrWall(vec3(-47, 3.169f, 36), vec3(15, 0.2f, 20.5f), 0, Red, -25, vec3(0, 0, 1 ), true);
 
 	//FIRST ELEVATED 0º RAMP
-	fifthRamp = CreateRamp(vec3(-100, 16, 36), vec3(50, 0.2f, 20.5f), 0, Blue, 0, vec3(0, 0, 0), true);
+	fifthRamp = CreateRampOrWall(vec3(-100, 16, 36), vec3(50, 0.2f, 20.5f), 0, Blue, 0, vec3(0, 0, 0), true);
 
 	//SECOND ELEVATED 0º RAMP
-	sixthRamp = CreateRamp(vec3(-140, 16, 16), vec3(30, 0.2f, 60), 0, White, 0, vec3(0, 0, 0), true);
+	sixthRamp = CreateRampOrWall(vec3(-140, 16, 16), vec3(30, 0.2f, 60), 0, White, 0, vec3(0, 0, 0), true);
 
 	//SEVENTH RAMP
-	seventhRamp = CreateRamp(vec3(-75.65f, 8, 0), vec3(100, 0.2f, 30), 0, Green, -9.20f, vec3(0, 0, 1), true);
+	seventhRamp = CreateRampOrWall(vec3(-75.65f, 8, 0), vec3(100, 0.2f, 30), 0, Green, -9.20f, vec3(0, 0, 1), true);
 
 	//EIGHT TERRAIN
 	eightTerrain.SetPos(-22.825f, 0.1f, 0);
@@ -119,6 +124,9 @@ update_status ModuleCircuit::Update(float dt)
 	seventhRamp.Render();
 	eightTerrain.Render();
 
+	limitWall1.Render();
+	limitWall2.Render();
+
 	return UPDATE_CONTINUE;
 }
 
@@ -129,7 +137,7 @@ bool ModuleCircuit::CleanUp()
 	return true;
 }
 
-Cube ModuleCircuit::CreateRamp(vec3 position, vec3 size, float mass, Color color, float angle, vec3 angle_rot, bool is_collider)
+Cube ModuleCircuit::CreateRampOrWall(vec3 position, vec3 size, float mass, Color color, float angle, vec3 angle_rot, bool is_collider)
 {
 	Cube cube(size.x, size.y, size.z);
 	cube.SetPos(position.x, position.y, position.z);

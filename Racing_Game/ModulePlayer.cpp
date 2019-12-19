@@ -250,7 +250,7 @@ update_status ModulePlayer::Update(float dt)
 	vehicle->GetPos();
 	if (vehicle->GetPos().z > 109.8f && vehicle->GetPos().x > -20)
 	{
-		App->camera->Look(vec3(50, 55, 160), vec3(-20, 0, 80), false);
+		App->camera->Look(vec3(50, 55, 160), vec3(-90, 0, 80), false);
 	}
 	else
 		App->camera->FollowVehicle(30);	

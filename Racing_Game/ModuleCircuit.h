@@ -51,7 +51,28 @@ public:
 	Cube eightTerrain;
 	PhysBody3D* physEightTerrain = nullptr;
 
+	//limit walls
+	Cube limitWall1;
+	Cube limitWall2;
+	Cube limitWall3;
+	Cube limitWall4;
+	Cube limitWall5;
+	Cube limitWall6;
+	Cube limitWall7;
+	Cube limitWall8;
+	Cube limitWall9;
+	Cube limitWall10;
+	Cube limitWall11;
+	Cube limitWall12;
+	Cube limitWall13;
+	Cube limitWall14;
+	Cube limitWall15;
+	Cube limitWall16;
+	Cube limitWall17;
+	Cube limitWall18;
+	Cube limitWall19;
+	Cube limitWall20;
+
 public:
-	Cube CreateRamp(vec3, vec3, float, Color, float, vec3, bool);
-	
+	Cube CreateRampOrWall(vec3, vec3, float, Color, float, vec3, bool);
 };
