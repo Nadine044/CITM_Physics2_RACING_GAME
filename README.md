@@ -17,9 +17,9 @@ You'll control a car with a trailer. Your objective is end the race avoiding the
 
 - KEY ARROWS: Move the vehicle.
 
--Z: Go back (reverse).
+- Z: Go back (reverse).
 
--ESC: Close the game.
+- ESC: Close the game.
 
 ## Links
 
