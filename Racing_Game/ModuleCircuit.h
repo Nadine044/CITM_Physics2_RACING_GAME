@@ -51,6 +51,9 @@ public:
 	Cube eightTerrain;
 	PhysBody3D* physEightTerrain = nullptr;
 
+	Cube FinishSensor;
+	PhysBody3D* sensor = nullptr;
+
 	//limit walls
 	Cube limitWall1;
 	Cube limitWall2;

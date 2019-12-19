@@ -20,14 +20,12 @@ bool ModuleCircuit::Start()
 
 	//INITIAL TERRAIN
 	initialTerrain.SetPos(0, 0.1f, 0);
-	initialTerrain.size = { 40, 0.2f, 50};
+	initialTerrain.size = { 40, 0.2f, 50 };
 	initialTerrain.color = Brown;
 	physWall = App->physics->AddBody(initialTerrain, WALL_MASS);
 
-	//limit walls
 	limitWall1 = CreateRampOrWall(vec3(20, 2.4f, 0), vec3(0.2f, 5, 50), WALL_MASS * 2, Gray, 0, vec3(0, 0, 0), true);
 	limitWall2 = CreateRampOrWall(vec3(0, 2.4f, -25), vec3(40, 5, 0.2f), WALL_MASS * 2, Gray, 0, vec3(0, 0, 0), true);
-
 
 	//FIRST RAMP
 	firstRamp = CreateRampOrWall(vec3(0, 6.f, 35.5f), vec3(40, 0.2f, 25), 0, Red, -30, vec3(1, 0, 0), true);
@@ -38,6 +36,9 @@ bool ModuleCircuit::Start()
 	first_terrain.color = Brown;
 	physFirstTerrain = App->physics->AddBody(first_terrain, WALL_MASS);
 
+	limitWall3 = CreateRampOrWall(vec3(20, 14.4f, 53.5f), vec3(0.2f, 5, 15), 0, Gray, 0, vec3(0, 0, 0), true);
+	limitWall4 = CreateRampOrWall(vec3(-20, 14.4f, 53.5f), vec3(0.2f, 5, 15), 0, Gray, 0, vec3(0, 0, 0), true);
+
 	//SECOND RAMP
 	secondRamp = CreateRampOrWall(vec3(0, 22, 77.5f), vec3(40, 0.2f, 40), 0, Red, -30, vec3(1, 0, 0), true);
 
@@ -46,6 +47,9 @@ bool ModuleCircuit::Start()
 	secondTerrain.size = { 40, 32, 30 };
 	secondTerrain.color = Brown;
 	physSecondTerrain = App->physics->AddBody(secondTerrain, WALL_MASS);
+
+	limitWall5 = CreateRampOrWall(vec3(20, 34.4f, 109.8f), vec3(0.2f, 5, 30), 0, Gray, 0, vec3(0, 0, 0), true);
+	limitWall6 = CreateRampOrWall(vec3(-20, 34.4f, 109.8f), vec3(0.2f, 5, 30), 0, Gray, 0, vec3(0, 0, 0), true);
 
 	//THIRD RAMP (DESCENDING ONE)
 	thirdRamp = CreateRampOrWall(vec3(0, 16, 140.8f), vec3(40, 0.2f, 45.25f), 0, White, 45, vec3(1, 0, 0), true);
@@ -56,11 +60,18 @@ bool ModuleCircuit::Start()
 	thirdTerrain.color = Red;
 	physThirdTerrain = App->physics->AddBody(thirdTerrain, WALL_MASS);
 
+	limitWall7 = CreateRampOrWall(vec3(-80, 2.4f, 186.8f), vec3(200, 5, 0.2f), 0, Gray, 0, vec3(0, 0, 0), true);
+	limitWall8 = CreateRampOrWall(vec3(0, 2.4f, 171.8f), vec3(0.2f, 5, 30), 0, Gray, 0, vec3(0, 0, 0), true);
+	limitWall9 = CreateRampOrWall(vec3(-85, 2.4f, 156.8f), vec3(130, 5, 0.2f), 0, Gray, 0, vec3(0, 0, 0), true);
+
 	//FOURTH TERRAIN
 	fourthTerrain.SetPos(-165, 0.1f, 106.15f);
 	fourthTerrain.size = { 30, 0.2f, 101.3f };
 	fourthTerrain.color = Green;
 	physFourthTerrain = App->physics->AddBody(fourthTerrain, WALL_MASS);
+
+	limitWall10 = CreateRampOrWall(vec3(-180, 2.4f, 121.15f), vec3(0.2f, 5, 131.3f), 0, Gray, 0, vec3(0, 0, 0), true);
+	//limitWall10 = CreateRampOrWall(vec3(-150, 2.4f, 121.15f), vec3(0.2f, 5, 0), 0, Gray, 0, vec3(0, 0, 0), true);
 
 	//FIFTH TERRAIN
 	fifthTerrain.SetPos(-50, 0.1f, 77.65f);
@@ -98,8 +109,6 @@ bool ModuleCircuit::Start()
 	eightTerrain.color = Blue;
 	physEightTerrain = App->physics->AddBody(eightTerrain, WALL_MASS);
 
-	//---------------------------
-
 	App->audio->PlayMusic("assets/audio/music/thunderstep-music-one-man-army-epic-electronic-rock-hybrid.wav");
 
 	return true;
@@ -107,6 +116,7 @@ bool ModuleCircuit::Start()
 
 update_status ModuleCircuit::Update(float dt)
 {
+
 	initialTerrain.Render();
 	firstRamp.Render();
 	first_terrain.Render();
@@ -126,6 +136,14 @@ update_status ModuleCircuit::Update(float dt)
 
 	limitWall1.Render();
 	limitWall2.Render();
+	limitWall3.Render();
+	limitWall4.Render();
+	limitWall5.Render();
+	limitWall6.Render();
+	limitWall7.Render();
+	limitWall8.Render();
+	limitWall9.Render();
+	limitWall10.Render();
 
 	return UPDATE_CONTINUE;
 }

@@ -225,27 +225,27 @@ update_status ModulePlayer::Update(float dt)
 {
 	turn = acceleration = brake = 0.0f;
 
-	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
+	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT && numLap != 1)
 	{
 		acceleration = MAX_ACCELERATION;
 	}
 
-	if(App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
+	if(App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT && numLap != 1)
 	{
 		if(turn < TURN_DEGREES)
 			turn +=  TURN_DEGREES;
 	}
 
-	if(App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
+	if(App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT && numLap != 1)
 	{
 		if(turn > -TURN_DEGREES)
 			turn -= TURN_DEGREES;
 	}
 
-	if(App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
+	if(App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT && numLap != 1)
 	{
 		brake = BRAKE_POWER;
-	}
+	}		
 
 	vehicle->GetPos();
 	if (vehicle->GetPos().z > 109.8f && vehicle->GetPos().x > -20)
@@ -254,6 +254,25 @@ update_status ModulePlayer::Update(float dt)
 	}
 	else
 		App->camera->FollowVehicle(30);	
+
+	//FINISH SENSOR
+	if (vehicle->GetPos().z < 16 && vehicle->GetPos().x < -15 && vehicle->GetPos().x > -25)
+	{
+		sensor = true;
+	}
+	else
+		sensor = false;
+
+	if (sensor == true)
+	{
+		App->camera->Look(vec3(-20, 50, -20), vec3(-90, -90, 80), false);
+		numLap = 1;
+	}
+	if (numLap == 1) {
+		LOG("RACE FINISH!!");
+		App->camera->Look(vec3(-20, 50, -20), vec3(-90, -90, 80), false);
+	}
+
 
 	vehicle->ApplyEngineForce(acceleration);
 	vehicle->Turn(turn);
@@ -268,6 +287,5 @@ update_status ModulePlayer::Update(float dt)
 
 	return UPDATE_CONTINUE;
 }
-
 
 

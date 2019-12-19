@@ -26,4 +26,8 @@ public:
 	float turn;
 	float acceleration;
 	float brake;
+
+public:
+	bool sensor = false;
+	int numLap = 0;
 };
