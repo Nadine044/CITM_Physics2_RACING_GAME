@@ -93,6 +93,10 @@ bool ModuleCircuit::Start()
 	eightTerrain.color = Blue;
 	physEightTerrain = App->physics->AddBody(eightTerrain, WALL_MASS);
 
+	//---------------------------
+
+	App->audio->PlayMusic("assets/audio/music/thunderstep-music-one-man-army-epic-electronic-rock-hybrid.wav");
+
 	return true;
 }
 

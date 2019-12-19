@@ -24,7 +24,7 @@ bool ModulePlayer::Start()
 	car.core.Set(3.f, 3.5f, 2.75f);
 	car.core_offset.Set(0, 3.f, 1.875f);
 	car.wall1_car.Set(0.15f, 1.5f, 5.5f);
-	car.wall1_car_offset.Set(1.425f, 2, -2.25f); //  3.25  -   -  0.5
+	car.wall1_car_offset.Set(1.425f, 2, -2.25f);
 	car.wall2_car.Set(0.15f, 1.5f, 5.5f);
 	car.wall2_car_offset.Set(-1.425f, 2, -2.25f);
 	car.wall3_car.Set(2.85f, 1.5f, 0.15f);
@@ -35,12 +35,12 @@ bool ModulePlayer::Start()
 	// Car properties ----------------------------------------
 	car.chassis_size.Set(3, 0.3f, 10);
 	car.chassis_offset.Set(0, 1.1f, 0);
-	car.mass = 500.0f;
+	car.mass = 600.0f;
 	car.suspensionStiffness = 15.88f;
 	car.suspensionCompression = 0.83f;
 	car.suspensionDamping = 0.88f;
-	car.maxSuspensionTravelCm = 1000.0f;
-	car.frictionSlip = 50.5;
+	car.maxSuspensionTravelCm = 500.0f;
+	car.frictionSlip = 10.5;
 	car.maxSuspensionForce = 6000.0f; //10000?? MYTODO
 
 	// Wheel properties ---------------------------------------
@@ -114,7 +114,6 @@ bool ModulePlayer::Start()
 	//---------------------------------------
 
 	//TRAILER
-
 	VehicleInfo trailerInfo;
 
 	//Personalized properties
@@ -248,7 +247,13 @@ update_status ModulePlayer::Update(float dt)
 		brake = BRAKE_POWER;
 	}
 
-	App->camera->FollowVehicle(30);
+	vehicle->GetPos();
+	if (vehicle->GetPos().z > 109.8f && vehicle->GetPos().x > -20)
+	{
+		App->camera->Look(vec3(50, 55, 160), vec3(-20, 0, 80), false);
+	}
+	else
+		App->camera->FollowVehicle(30);	
 
 	vehicle->ApplyEngineForce(acceleration);
 	vehicle->Turn(turn);
