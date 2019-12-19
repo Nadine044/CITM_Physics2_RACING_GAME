@@ -4,7 +4,7 @@ You'll control a car with a trailer. Your objective is end the race avoiding the
 
 ## Instructions to execute:
 
-- Download the latest release: https://github.com/Nadine044/Wide-Whip/releases.
+- Download the latest release: https://github.com/Nadine044/CITM_Physics2_RACING_GAME/releases
 
 - Unzip the file.
 
