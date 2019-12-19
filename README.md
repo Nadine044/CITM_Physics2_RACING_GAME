@@ -1,4 +1,4 @@
-# CITM_Physics2_RACING_GAME
+# CITM PhysicsII RACING GAME
 Racing Game created by me, Nadine Gutiérrez. I used Bullet 3D Physics Library. This game is for a project on the Physics II Subject on CITM (Barcelona, Terrassa).
 You'll control a car with a trailer. Your objective is end the race avoiding the get the vehicle upside down. Be careful on ramps! :)
 
